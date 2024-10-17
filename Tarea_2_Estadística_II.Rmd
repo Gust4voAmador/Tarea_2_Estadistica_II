@@ -1,0 +1,110 @@
+---
+title: "Tarea_2_Estadística_II"
+author: "Gustavo Amador Fonseca C20451"
+date: "2024-10-17"
+output: html_document
+---
+
+Función objetivo
+```{r}
+#Dadas las muestras:
+muestras <- c(2.72, 1.93, 1.76, 0.49, 6.12, 0.43, 4.01, 1.71, 2.01, 5.96)
+
+#Por teoría bayesiana se optiene que la distribución posteriore es una gamma(12,1+ suma de las muestras)
+alpha <- 12
+beta <- 1 + sum(muestras)
+
+# Función de densidad de la posterior Gamma(alpha, beta) es la función objetivo
+f_obj <- Vectorize(function(x) {
+  ((beta^alpha) / factorial(alpha - 1)) * x^(alpha - 1) * exp(-beta * x)
+})
+
+# Graficar la función de densidad
+curve(f_obj, from = 0, to = 1, ylab = "Densidad", main = "Distribución Posterior Gamma")
+
+```
+
+```{r}
+#Calculo del maximo
+pto_max <- optimize(f_obj, interval = c(0, 1), maximum = TRUE)
+c <- pto_max$objective  
+print(c)
+```
+
+
+```{r}
+# Algoritmo de Aceptación y Rechazo
+set.seed(2023)
+U <- runif(10000)
+x <- runif(10000, 0, 1) #Entre cero y uno porque es donde se encuentra principalmente la densidad
+ngen = length(x)
+
+DIB <- f_obj(x)
+for (i in 1:10000) {
+  while ((U[i] * c) >= DIB[i]) {  # Sustituimos los rechazados
+    U[i] <- runif(1)
+    x[i] <- runif(1)
+    DIB[i] <- f_obj(x[i])
+    ngen <- ngen + 1
+  }
+}
+
+```
+
+```{r}
+# Proporción de rechazos
+density_values = f_obj(x)
+cat("Número de generaciones =", ngen, "\n")
+cat("Número medio de aceptados =", ngen / 10000, "\n")
+cat("Proporción de rechazos =", 1 - 10000 / ngen, "\n")
+
+# Estimación de lambda
+lambda_est = mean(x)
+cat("Valor estimado de lambda:", lambda_est, "\n")
+
+# Graficar el histograma de los valores generados y la densidad teórica
+hist(x, breaks = "FD", freq = FALSE, main = "Distribución de los Valores Generados vs Densidad Posterior")
+curve(f_obj, from = 0, to = 5, col = 2, lwd = 2, add = TRUE)
+legend("topright", legend = c("Histograma", "Densidad Posterior"), col = c("gray", "red"), lty = 1, lwd = 2)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
