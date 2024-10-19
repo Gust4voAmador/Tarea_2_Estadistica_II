@@ -1,6 +1,6 @@
 ---
 title: "Tarea_2_Estadística_II"
-author: "Gustavo Amador Fonseca C20451"
+author: "Félix Madrigal Mora C24459, Gustavo Amador C20451, Eduardo Corella"
 date: "2024-10-17"
 output: html_document
 ---
@@ -8,7 +8,41 @@ output: html_document
 library(ggplot2)
 ```
 
+##Pregunta 2
 
+### a)
+
+```{r}
+# Definimos la función de densidad de la pérdida L con distribución exponencial
+f_L <- function(L, lambda = 1) {
+  return(lambda * exp(-lambda * L))
+}
+
+```
+
+### b)
+
+```{r}
+set.seed(54321)
+n <- 10^4
+
+mu <- 3
+sigma <- 2 
+
+#sacamos las muestras con distribucion normal
+muestras_g <- rnorm(n, mean = mu , sd = sigma)
+#para constuir las muestras se usa una distribucion normal, sin embargo la funcion de perdida es para las 
+#exponenciales, por esa razon se restringe a mayores a 0
+muestras_g <- muestras_g[muestras_g > 0]  
+
+#sacamos la densidad de g y f en base a las muestras
+g_L_valores <- dnorm(muestras_g, mean = mu, sd = sigma)
+f_L_valores <- f_L(muestras_g) 
+ 
+valor_esperado <-mean( muestras_g *  (f_L_valores / g_L_valores))
+valor_esperado
+
+```
 
 
 # Ejercicio 3
@@ -76,6 +110,11 @@ legend("topright", legend = c("Histograma", "Densidad Posterior"), col = c("gray
 
 
 ```
+```{r}
+q <- quantile(x, c(0.005, 0.9955))
+q
+```
+### Si lambda fuera 0,5 no se rechazaria la hipotesis porque el valor estaria dentro del intervalo de confianza, por lo que no se tiene la suficiente informacion para poder descartar la hipotesis y mas bien es un valor de lambda que puede ser admisible ya que cae dentro del intervalo de confianza del 99%
 
 
 # Ejercicio 5
