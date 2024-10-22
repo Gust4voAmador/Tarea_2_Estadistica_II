@@ -125,12 +125,12 @@ valor_esperado
 muestras <- c(2.72, 1.93, 1.76, 0.49, 6.12, 0.43, 4.01, 1.71, 2.01, 5.96)
 ```
 
-Note que la función priori está dada por:
-$\pi(\lambda) \sim \gamma(2,1) \quad \Rightarrow \quad  \gamma(2,1) = \lambda e^{-\lambda}$
-Y la función de verosimilitud según el enunciado:
-$L(x|\lambda) \sim exp(\lambda) \quad \Rightarrow \quad exp(\lambda) = \lambda^{n}e^{-\lambda \sum_{i=1}^{n}x_i}$
-Entonces, por medio de teoría bayesiana de obtiene que la funición posteriori:
-$f(\lambda|x) \propto \lambda e^{- \lambda} \cdot \lambda e^{-\lambda \sum_{i=1}^{n}x_i} = \lambda^{(n+1)} e^{(1+\Sigma x)}$ donde $ n=10 \quad \land  \quad \Sigma x = 27.14$
+Note que la función priori está dada por: <br>
+$\pi(\lambda) \sim \gamma(2,1) \quad \Rightarrow \quad  \gamma(2,1) = \lambda e^{-\lambda}$<br>
+Y la función de verosimilitud según el enunciado:<br>
+$L(x|\lambda) \sim exp(\lambda) \quad \Rightarrow \quad exp(\lambda) = \lambda^{n}e^{-\lambda \sum_{i=1}^{n}x_i}$<br>
+Entonces, por medio de teoría bayesiana de obtiene que la funición posteriori:<br>
+$f(\lambda|x) \propto \lambda e^{- \lambda} \cdot \lambda e^{-\lambda \sum_{i=1}^{n}x_i} = \lambda^{(n+1)} e^{(1+\Sigma x)}$ donde $ n=10 \quad \land  \quad \Sigma x = 27.14$<br>
 Por lo tanto se tiene que que la función posteriori es una distribución gamma con parámetros $ \alpha = 12$ y $\beta = 28,14 $.
 
 ```{r}

@@ -1425,16 +1425,16 @@ cada 20 puntos)</h2>
 <h2>a)</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co">#Dadas las muestras:</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>muestras <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.72</span>, <span class="fl">1.93</span>, <span class="fl">1.76</span>, <span class="fl">0.49</span>, <span class="fl">6.12</span>, <span class="fl">0.43</span>, <span class="fl">4.01</span>, <span class="fl">1.71</span>, <span class="fl">2.01</span>, <span class="fl">5.96</span>)</span></code></pre></div>
-<p>Note que la función priori está dada por: <span class="math inline">\(\pi(\lambda) \sim \gamma(2,1) \quad \Rightarrow
-\quad  \gamma(2,1) = \lambda e^{-\lambda}\)</span> Y la función de
-verosimilitud según el enunciado: <span class="math inline">\(L(x|\lambda) \sim exp(\lambda) \quad \Rightarrow
-\quad exp(\lambda) = \lambda^{n}e^{-\lambda \sum_{i=1}^{n}x_i}\)</span>
-Entonces, por medio de teoría bayesiana de obtiene que la funición
-posteriori: <span class="math inline">\(f(\lambda|x) \propto \lambda
-e^{- \lambda} \cdot \lambda e^{-\lambda \sum_{i=1}^{n}x_i} =
-\lambda^{(n+1)} e^{(1+\Sigma x)}\)</span> donde $ n=10 x = 27.14$ Por lo
-tanto se tiene que que la función posteriori es una distribución gamma
-con parámetros $ = 12$ y $= 28,14 $.</p>
+<p>Note que la función priori está dada por: <br> <span class="math inline">\(\pi(\lambda) \sim \gamma(2,1) \quad \Rightarrow
+\quad  \gamma(2,1) = \lambda e^{-\lambda}\)</span><br> Y la función de
+verosimilitud según el enunciado:<br> <span class="math inline">\(L(x|\lambda) \sim exp(\lambda) \quad \Rightarrow
+\quad exp(\lambda) = \lambda^{n}e^{-\lambda
+\sum_{i=1}^{n}x_i}\)</span><br> Entonces, por medio de teoría bayesiana
+de obtiene que la funición posteriori:<br> <span class="math inline">\(f(\lambda|x) \propto \lambda e^{- \lambda} \cdot
+\lambda e^{-\lambda \sum_{i=1}^{n}x_i} = \lambda^{(n+1)} e^{(1+\Sigma
+x)}\)</span> donde $ n=10 x = 27.14$<br> Por lo tanto se tiene que que
+la función posteriori es una distribución gamma con parámetros $ = 12$ y
+$= 28,14 $.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co">#Por teoría bayesiana se optiene que la distribución posteriore es una gamma(12,1+ suma de las muestras)</span></span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">12</span></span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">sum</span>(muestras)</span>
