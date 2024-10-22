@@ -131,7 +131,7 @@ Y la función de verosimilitud según el enunciado:<br>
 $L(x|\lambda) \sim exp(\lambda) \quad \Rightarrow \quad exp(\lambda) = \lambda^{n}e^{-\lambda \sum_{i=1}^{n}x_i}$<br>
 Entonces, por medio de teoría bayesiana de obtiene que la funición posteriori:<br>
 $f(\lambda|x) \propto \lambda e^{- \lambda} \cdot \lambda e^{-\lambda \sum_{i=1}^{n}x_i} = \lambda^{(n+1)} e^{(1+\Sigma x)}$ donde $ n=10 \quad \land  \quad \Sigma x = 27.14$<br>
-Por lo tanto se tiene que que la función posteriori es una distribución gamma con parámetros $ \alpha = 12$ y $\beta = 28,14 $.
+Por lo tanto se tiene que que la función posteriori es una distribución gamma con parámetros $\alpha = 12$ y $\beta = 28,14$.
 
 ```{r}
 #Por teoría bayesiana se optiene que la distribución posteriore es una gamma(12,1+ suma de las muestras)
@@ -356,6 +356,7 @@ acf(mcmc, main = "Autocorrelación de muestra MCMC")
 
 
 ```
+
 ## e)
 ```{r}
 #Grafico convergencia de la media
